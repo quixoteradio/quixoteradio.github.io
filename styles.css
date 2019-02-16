@@ -1,0 +1,166 @@
+body, html {
+	top:0;
+	left:0;
+	margin:0;
+	font-family: 'Roboto', sans-serif;
+	background-color:#F2F2F2;
+	color:#727171;
+	scroll-snap-type: y mandatory;
+}
+
+.nav {
+	width: 100%;
+	display:inline-block;
+	position:fixed;
+	background-color:#F2F2F2;
+	opacity:0.9;
+}
+
+.categories {
+	width: fit-content;
+	padding:5%;
+	display:inline-block;
+	float:right;
+	vertical-align:middle;
+}
+.logo {
+	display:inline-block;
+	padding:2% 2% 2% 5%;
+}
+.nav a {
+	display:inline-block;
+	text-decoration:none;
+	color:#727171;
+	font-weight:300;
+	padding-right:15%;
+	line-height:2em;
+	letter-spacing:0.1em;
+}
+
+.nav a:hover {
+	color:#272823;
+}
+
+section {
+	scroll-snap-align: start;
+	scroll-snap-stop: always;
+	display:block;
+	padding:15% 5%;
+}
+
+.card {
+	background-color:#F2F2F2;
+	background-color: #CCCCCC;
+  	background-blend-mode: multiply;
+	border-radius:1em;
+	width:30%;
+	height:50vh;
+	box-shadow: 0.005em 0.005em 1em #727171;
+	color:white;
+	overflow:hidden;
+	cursor:pointer;
+	transition:0.25s all ease-in-out;
+	display:inline-block;
+	margin-right:3%;
+	margin-bottom:3%;
+}
+
+.card:hover {
+	box-shadow: 0.005em 0.005em 1em black;
+}
+
+.card img {
+	width:100%;
+}
+.details {
+	padding:55% 10% 5% 10%;
+	bottom:0%;
+}
+.details h1 {
+	font-size: 2em;
+	font-weight:800;
+	line-height:1em;
+}
+.mobile-nav {
+	display:none;
+	position:fixed;
+	font-size:3em;
+	padding:5%;
+	cursor:pointer;
+	width:100%;
+	opacity:0.95;
+	color:#333333;
+}
+.mobile-sidenav {
+	margin-left:-35%;
+	background-color:#333333;
+	height:100vh;
+	position:fixed;
+	transition:0.5s all ease-in-out;
+	padding:5%;
+		box-shadow: 0em 0.5em 1em black ;
+
+}
+.mobile-sidenav close {
+	font-size:3em;
+	cursor:pointer;
+	display:block;
+	margin:5%;
+}
+.mobile-sidenav a {
+	color:white;
+	display:block;
+	text-decoration:none;
+	font-size:1.5em;
+	line-height:3em;
+	vertical-align:baseline;
+	font-weight:300;
+}
+name {
+	font-size:0.3em;
+	font-weight:600;
+	float:right;
+	margin-right:15%;
+	margin-top:5%;
+}
+.mobile-sidenav .categories {
+	display:block;
+	vertical-align:baseline;
+}
+@media screen and (max-width:900px){
+	.card {
+		width:80%;
+		height:70vh;
+		padding-left:18.5%;
+	}
+	section {
+		padding-top:20%;
+	}
+	.logo h1 {
+		font-size:1em;
+	}
+	.nav {
+		display:none;
+	}
+	.mobile-nav {
+		display:block;
+	}
+	.header {
+		float:right;
+		margin-right:5%;
+	}
+	.details {
+		vertical-align:baseline;
+		margin-left:0%;
+		margin-left:-20%;
+	}
+	.card {
+
+	}
+	.details h1 {
+		vertical-align:baseline;
+		font-size: 3em;
+		font-weight:800;
+		line-height:1em;
+	}
+}
