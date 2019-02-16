@@ -158,7 +158,6 @@ name {
 	}
 	.card {
 		scroll-snap-align: start;
-		scroll-snap-stop: always;
 
 	}
 	.details h1 {
