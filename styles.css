@@ -6,6 +6,24 @@ body, html {
 	background-color:#F2F2F2;
 	color:#727171;
 	scroll-snap-type: y mandatory;
+	animation:fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity:0.5;
+	}
+	100% {
+		opacity:1;
+	}
+}
+.lightbox {
+	width:100%;
+	height:100vh;
+	background-color:#727171;
+	position:absolute;
+	bottom:-100%;
+	transition:0.5s all ease-in-out;
 }
 
 .nav {
@@ -157,12 +175,13 @@ name {
 		margin-left:-20%;
 	}
 	.card {
-		scroll-snap-align: start;
+		scroll-snap-align: end;
+		margin-bottom:10%;
 
 	}
 	.details h1 {
 		vertical-align:baseline;
-		font-size: 3em;
+		font-size: 2em;
 		font-weight:800;
 		line-height:1em;
 	}

@@ -5,8 +5,16 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<meta name="viewport" content="width=device-width">
+	<script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
 </head>
 <body>
+
+<!-- Lightbox -->
+<div class="lightbox">
+	<close>X</close>
+	<div class="content">
+	</div>
+</div>
 
 <!-- Mobile Nav -->
 <div class="mobile-nav">
@@ -40,92 +48,18 @@
 
 <section id="courses">
 <h1 class="header">Courses</h1>
-	<!-- Card -->
-	<div class="card" style="background-image:url('https://images.pexels.com/photos/1690351/pexels-photo-1690351.jpeg?cs=srgb&dl=abstract-abstract-expressionism-abstract-painting-1690351.jpg&fm=jpg');background-size: 100% auto;">
-		<div class="details">
-			<h1>Communication Ethics</h1>
-			<p></p>
-		</div>
-	</div>
-
-		<!-- Card -->
-	<div class="card" style="background-image:url('https://images.pexels.com/photos/1223341/pexels-photo-1223341.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');background-size: 100% auto;">
-		<div class="details">
-			<h1>Ethics and Personal Relations</h1>
-			<p></p>
-		</div>
-	</div>
-
-		<!-- Card -->
-	<div class="card" style="background-image:url('https://images.pexels.com/photos/220783/pexels-photo-220783.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');background-size: 100% auto;">
-		<div class="details">
-			<h1>Introductions to the Problems of Philosophy 2101</h1>
-			<p></p>
-		</div>
-	</div>
-
 </section>
 
 <!-- Section -->
 
 <section id="research">
 <h1 class="header">Research</h1>
-	<!-- Card -->
-	<div class="card" style="background-image:url('https://images.pexels.com/photos/838869/pexels-photo-838869.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');background-size: 100% auto;">
-		<div class="details">
-			<h1>Metaphysics</h1>
-			<p></p>
-		</div>
-	</div>
-
-		<!-- Card -->
-	<div class="card" style="background-image:url('https://images.pexels.com/photos/1089561/pexels-photo-1089561.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');background-size: 100% auto;">
-		<div class="details">
-			<h1>Political philosophy</h1>
-			<p></p>
-		</div>
-	</div>
-
-		<!-- Card -->
-	<div class="card" style="background-image:url('https://images.pexels.com/photos/1774986/pexels-photo-1774986.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');background-size: 100% auto;">
-		<div class="details">
-			<h1>Moral philosophy</h1>
-			<p></p>
-		</div>
-	</div>
-
 </section>
 
 <!-- Section -->
 
 <section id="writing">
 <h1 class="header">Writing</h1>
-	<!-- Card -->
-	<a href="http://www.thecnnekt.com/stories/2018/1/21/a-short-polemic-on-mens-rights" target="blank">
-		<div class="card" style="background-image:url('https://images.pexels.com/photos/1755079/pexels-photo-1755079.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');background-size: 100% auto;">
-			<div class="details">
-				<h1>A short polemic on men's rights</h1>
-				<p></p>
-			</div>
-		</div>
-	</a>
-
-		<!-- Card -->
-	<div class="card" style="background-image:url('https://images.pexels.com/photos/1223341/pexels-photo-1223341.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');background-size: 100% auto;">
-		<div class="details">
-			<h1>[publication here]</h1>
-			<p></p>
-		</div>
-	</div>
-
-		<!-- Card -->
-	<div class="card" style="background-image:url('https://images.pexels.com/photos/220783/pexels-photo-220783.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');background-size: 100% auto;">
-		<div class="details">
-			<h1>[publication here]</h1>
-			<p></p>
-		</div>
-	</div>
-
 </section>
 
 <script>
@@ -133,13 +67,67 @@ mobilenav = document.querySelector('.mobile-nav')
 sidenav = document.querySelector('.mobile-sidenav');
 links = sidenav.querySelectorAll('a');
 close = document.querySelector('.mobile-sidenav close')
-console.log(links);
+lightbox = document.querySelector('.lightbox');
 mobilenav.onclick=function() {
 	sidenav.style.marginLeft="0%";
 }
 close.onclick=function() {
 	sidenav.style.marginLeft="-50%";
 }
+
+d3.csv('data.csv', function(error, data){
+	courses = data.filter(function(d){return d.type == "courses"});
+	research = data.filter(function(d){return d.type == "research"});
+	writing = data.filter(function(d){return d.type == "writing"});
+	createCards(courses, '#courses');
+	createCards(research, '#research');
+	createCards(writing, '#writing');
+	lightboxListen(data);
+
+	function lightboxListen(data) {
+	cards = document.querySelectorAll('.card');
+	console.log(cards)
+	for(i=0;i<cards.length;i++){
+	cards[i].onclick=function() {
+		console.log(data);
+		console.log("click")
+		lightbox.style.bottom="0%";
+		reference = this.childNodes[0].childNodes[0];
+		reference = reference.innerHTML;
+		getLightboxContent(data);
+		function getLightboxContent(data) {
+		data = data.filter(function(d){return d.title == reference})
+		lightbox.querySelector('.content').innerHTML=data[i]['popup_html'];
+		}
+			}
+		}
+		
+	}
+})
+
+function createCards(data, location) {
+	target = document.querySelector(location);
+	for(i=0;i<data.length;i++){
+		link = document.createElement('a');
+		link.href = data[i]['external_link']
+		card = document.createElement('div');
+		card.setAttribute("class", "card");
+		card.style.backgroundImage="url("+data[i]['image_url']+")";
+		card.style.backgroundSize="100% auto";
+		details = document.createElement('div');
+		details.setAttribute("class", "details");
+		h1 = document.createElement('h1');
+		h1.innerHTML = data[i]['title'];
+		p = document.createElement('p');
+		p.innerHTML = data[i]['description'];
+		details.appendChild(h1);
+		details.appendChild(p);
+		target.appendChild(card);
+		card.appendChild(details)
+		target.appendChild(link);
+	}
+}
+
 
 </script>
 </body>
