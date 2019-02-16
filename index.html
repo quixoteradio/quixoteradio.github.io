@@ -113,8 +113,6 @@ lightbox_close.onclick=function() {
 function createCards(data, location) {
 	target = document.querySelector(location);
 	for(i=0;i<data.length;i++){
-		link = document.createElement('a');
-		link.href = data[i]['external_link']
 		card = document.createElement('div');
 		card.setAttribute("class", "card");
 		card.style.backgroundImage="url("+data[i]['image_url']+")";
