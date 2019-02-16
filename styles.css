@@ -21,11 +21,43 @@ body, html {
 	width:100%;
 	height:100vh;
 	background-color:#727171;
-	position:absolute;
+	position:fixed;
+	overflow-y:scroll;
+	line-height:2em;
 	bottom:-100%;
 	transition:0.5s all ease-in-out;
 }
-
+.lightbox .content {
+	padding: 15% 5%;
+	color:white;
+	font-weight:300;
+}
+.lightbox close {
+	color: #CCCCCC;
+	font-size:3em;
+	position:absolute;
+	bottom:5%;
+	cursor:pointer;
+	margin:5%;
+}
+.lightbox close:hover {
+	color:black;
+}
+.lightbox .content a{
+	display:block;
+	text-decoration:none;
+	padding:2%;
+	width:fit-content;
+	color:white;
+	margin-top:5%;
+	border:0.05em solid white;
+	transition: 0.5s all ease-in-out;
+}
+.lightbox .content a:hover {
+	background-color:white;
+	border:0.05em solid #727171;
+	color:#727171;
+}
 .nav {
 	width: 100%;
 	display:inline-block;
@@ -44,6 +76,7 @@ body, html {
 .logo {
 	display:inline-block;
 	padding:2% 2% 2% 5%;
+	cursor:pointer;
 }
 .nav a {
 	display:inline-block;
@@ -140,6 +173,7 @@ name {
 	float:right;
 	margin-right:15%;
 	margin-top:5%;
+	cursor:pointer;
 }
 .mobile-sidenav .categories {
 	display:block;
@@ -184,6 +218,16 @@ name {
 		font-size: 2em;
 		font-weight:800;
 		line-height:1em;
+	}
+	.lightbox .content {
+		margin-top:5%;
+		padding:15%;
+	}
+	.lightbox close {
+		padding-left:10%;
+	}
+	.lightbox a {
+		padding:3%;
 	}
 }
 @media screen and (max-width:1240px) and (min-width:900px){

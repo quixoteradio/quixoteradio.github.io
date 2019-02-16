@@ -11,9 +11,9 @@
 
 <!-- Lightbox -->
 <div class="lightbox">
-	<close>X</close>
 	<div class="content">
 	</div>
+	<close>&#8592;</close>
 </div>
 
 <!-- Mobile Nav -->
@@ -63,16 +63,21 @@
 </section>
 
 <script>
-mobilenav = document.querySelector('.mobile-nav')
-sidenav = document.querySelector('.mobile-sidenav');
-links = sidenav.querySelectorAll('a');
-close = document.querySelector('.mobile-sidenav close')
-lightbox = document.querySelector('.lightbox');
+var mobilenav = document.querySelector('.mobile-nav')
+var sidenav = document.querySelector('.mobile-sidenav');
+var links = sidenav.querySelectorAll('a');
+var close = document.querySelector('.mobile-sidenav close')
+var lightbox = document.querySelector('.lightbox');
+var lightbox_close = lightbox.querySelector('close');
+var logo = document.querySelector('.logo');
 mobilenav.onclick=function() {
 	sidenav.style.marginLeft="0%";
 }
 close.onclick=function() {
 	sidenav.style.marginLeft="-50%";
+}
+logo.onclick=function() {
+	window.location = "/";
 }
 
 d3.csv('data.csv', function(error, data){
@@ -86,24 +91,24 @@ d3.csv('data.csv', function(error, data){
 
 	function lightboxListen(data) {
 	cards = document.querySelectorAll('.card');
-	console.log(cards)
 	for(i=0;i<cards.length;i++){
 	cards[i].onclick=function() {
-		console.log(data);
-		console.log("click")
 		lightbox.style.bottom="0%";
 		reference = this.childNodes[0].childNodes[0];
 		reference = reference.innerHTML;
-		getLightboxContent(data);
-		function getLightboxContent(data) {
-		data = data.filter(function(d){return d.title == reference})
-		lightbox.querySelector('.content').innerHTML=data[i]['popup_html'];
+		this_data = data.filter(function(d){return d.title == reference})
+		content = document.querySelector('.lightbox .content')
+		content.innerHTML=this_data[0]['popup_html'];
 		}
-			}
-		}
-		
 	}
+		
+}
 })
+
+lightbox_close.onclick=function() {
+	console.log(lightbox);
+	lightbox.style.bottom="-100%";
+}
 
 function createCards(data, location) {
 	target = document.querySelector(location);
