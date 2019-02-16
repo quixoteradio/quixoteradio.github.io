@@ -96,6 +96,7 @@ d3.csv('data.csv', function(error, data){
 	research = data.filter(function(d){return d.type == "research"});
 	writing = data.filter(function(d){return d.type == "writing"});
 	about = data.filter(function(d){return d.type == "about"});
+		console.log(about)
 	createCards(courses, '#courses');
 	createCards(research, '#research');
 	createCards(writing, '#writing');
@@ -127,10 +128,13 @@ function createBio(data, location) {
 	target = document.querySelector(location);
 	content = document.createElement('div');
 	content.setAttribute("class", "content");
+	image_bounds = document.createElement('div');
+	image_bounds.setAttribute("class", "image-bounds");
 	profile_image = document.createElement('img');
-	profile_image.src=data[i]['image_url'];
-	content.appendChild(profile_image);
-	content.innerHTML += data[i]['popup_html'];
+	profile_image.src=data[0]['image_url'];
+	image_bounds.appendChild(profile_image);
+	content.appendChild(image_bounds);
+	content.innerHTML += data[0]['popup_html'];
 	target.appendChild(content);
 }
 

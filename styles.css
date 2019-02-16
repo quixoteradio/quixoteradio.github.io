@@ -85,6 +85,29 @@ body, html {
 .logo:hover {
 	color:black;
 }
+.image-bounds {
+	border-radius:50%;
+	width:20em;
+	height:20em;
+	overflow:hidden;
+	display:inline-block;
+}
+#about .content {
+	margin:auto;
+	text-align:center;
+}
+#about img {
+	width:105%;
+}
+#about p {
+	display:inline-block;
+	width:30%;
+	vertical-align:top;
+	padding:5%;
+	text-align:left;
+	line-height:2em;
+	font-weight:300;
+}
 .nav a {
 	display:inline-block;
 	text-decoration:none;
@@ -216,7 +239,6 @@ name {
 		margin-left:-20%;
 	}
 	.card {
-		scroll-snap-align: end;
 		margin-bottom:10%;
 
 	}
@@ -235,6 +257,12 @@ name {
 	}
 	.lightbox a {
 		padding:3%;
+	}
+	#about .content {
+		margin-top:20%;
+	}
+	#about p {
+		width:80%;
 	}
 }
 @media screen and (max-width:1240px) and (min-width:900px){
