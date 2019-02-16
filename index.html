@@ -2,7 +2,11 @@
 <html>
 <head>
 	<title>Quixote Radio</title>
+	<meta name="description" content="Quixote Radio Vassilakis is a philosopher, editor and musician situated in Brooklyn, NY.">
+	 <meta name="keywords" content="quixote, vassilakis, philosophy, editor, new york">
+	 <meta name="author" content="Quixote Radio Vassilakis">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Martel:400" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<meta name="viewport" content="width=device-width">
 	<script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
@@ -62,6 +66,13 @@
 <h1 class="header">Writing</h1>
 </section>
 
+<!-- Section -->
+
+<section id="about">
+<h1 class="header">About</h1>
+</section>
+
+
 <script>
 var mobilenav = document.querySelector('.mobile-nav')
 var sidenav = document.querySelector('.mobile-sidenav');
@@ -84,9 +95,11 @@ d3.csv('data.csv', function(error, data){
 	courses = data.filter(function(d){return d.type == "courses"});
 	research = data.filter(function(d){return d.type == "research"});
 	writing = data.filter(function(d){return d.type == "writing"});
+	about = data.filter(function(d){return d.type == "about"});
 	createCards(courses, '#courses');
 	createCards(research, '#research');
 	createCards(writing, '#writing');
+	createBio(about, '#about')
 	lightboxListen(data);
 
 	function lightboxListen(data) {
@@ -108,6 +121,17 @@ d3.csv('data.csv', function(error, data){
 lightbox_close.onclick=function() {
 	console.log(lightbox);
 	lightbox.style.bottom="-100%";
+}
+
+function createBio(data, location) {
+	target = document.querySelector(location);
+	content = document.createElement('div');
+	content.setAttribute("class", "content");
+	profile_image = document.createElement('img');
+	profile_image.src=data[i]['image_url'];
+	content.appendChild(profile_image);
+	content.innerHTML += data[i]['popup_html'];
+	target.appendChild(content);
 }
 
 function createCards(data, location) {
