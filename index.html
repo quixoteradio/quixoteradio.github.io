@@ -90,6 +90,11 @@ close.onclick=function() {
 logo.onclick=function() {
 	window.location = "/";
 }
+for(i=0;i<links.length;i++){
+	links[i].onclick=function() {
+		lightbox.style.bottom="0%";
+	}
+}
 
 d3.csv('data.csv', function(error, data){
 	courses = data.filter(function(d){return d.type == "courses"});
@@ -121,7 +126,7 @@ d3.csv('data.csv', function(error, data){
 
 lightbox_close.onclick=function() {
 	console.log(lightbox);
-	lightbox.style.bottom="-100%";
+	lightbox.style.bottom="-200%";
 }
 
 function createBio(data, location) {
