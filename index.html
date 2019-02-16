@@ -121,10 +121,7 @@ function createCards(data, location) {
 		details.setAttribute("class", "details");
 		h1 = document.createElement('h1');
 		h1.innerHTML = data[i]['title'];
-		p = document.createElement('p');
-		p.innerHTML = data[i]['description'];
 		details.appendChild(h1);
-		details.appendChild(p);
 		target.appendChild(card);
 		card.appendChild(details);
 	}
