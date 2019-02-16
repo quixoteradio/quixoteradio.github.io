@@ -128,9 +128,6 @@ name {
 	vertical-align:baseline;
 }
 @media screen and (max-width:900px){
-	body, html {
-		scroll-snap-type: none;
-	}
 	.card {
 		width:80%;
 		height:70vh;
@@ -138,6 +135,8 @@ name {
 	}
 	section {
 		padding-top:20%;
+		scroll-snap-align: none;
+		scroll-snap-stop: none;
 	}
 	.logo h1 {
 		font-size:1em;
@@ -158,6 +157,8 @@ name {
 		margin-left:-20%;
 	}
 	.card {
+		scroll-snap-align: start;
+		scroll-snap-stop: always;
 
 	}
 	.details h1 {
